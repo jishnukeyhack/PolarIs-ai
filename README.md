@@ -1,36 +1,36 @@
-# PolarIs AI — Polar Energy AI Lab
+# PolarIs AI — Polar Energy Lab
 
-> **A predictive, optimization-driven, resilient microgrid energy management platform for Antarctic research stations (Maitri, Bharati, and Maitri II).**
+> A predictive, optimization-driven, resilient microgrid energy management platform purpose-built for Antarctic research stations and extreme environments.
 
-Built in the design philosophy of **Google DeepMind WeatherLab** (`deepmind.google.com/science/weatherlab`), PolarIs AI couples 40+ years of NASA POWER climate observations and Open-Meteo numerical weather forecasts with sub-10ms HiGHS Mixed-Integer Linear Programming (MILP) dispatch scheduling and autonomous "Polar Survival Mode" resilience.
+PolarIs AI delivers cutting-edge forecasting, dispatch optimization, and resilience controls tailored for long-duration polar operations. Designed for the Smart India Hackathon 2026 (SIH2026), this repository demonstrates an end-to-end system that reduces diesel dependence, preserves life-safety systems in emergencies, and surfaces actionable insights for field operators and researchers.
 
 ---
 
 ## Key Features
 
-1. **Google WeatherLab Design System**:
-   - Material Design 3 polar token layer (`--md-primary: #7DD3FC`, `--md-secondary: #34D399`, `--md-tertiary: #A78BFA`, `--md-error: #FB923C`).
-   - High-contrast glassmorphic panels (`backdrop-filter: blur(20px) saturate(140%)`).
-   - 60fps GPU-composited particle streamlines, Antarctic radar heatmaps, and cyclone trajectory vectors.
+1. Design system and immersive UI:
+   - A polar-first visual language with high-contrast glass panels, cinematic particle streamlines, and a focus on operator clarity in low-light / high-glare conditions.
+   - Responsive dashboard, 3D Earth preview, and visual workflows for forecast-to-dispatch traces.
 
-2. **Predictive Multi-Horizon Forecasting**:
-   - Multi-horizon forecasting (1h, 6h, 24h, 72h) for Solar GHI, Arctic Wind Power, and Station Thermal/Electrical Loads.
-   - Built on 40+ years of NASA POWER API empirical irradiance and Open-Meteo 16-day numerical forecasts.
+2. Predictive Multi-Horizon Forecasting:
+   - Multi-horizon forecasting (1h, 6h, 24h, 72h) for solar irradiance, wind power potential, and thermal/electrical station loads.
+   - Combines long-term historical climatology with short-to-medium range numerical forecasts to provide robust predictions under polar conditions.
 
-3. **High-Speed MILP Dispatch Engine**:
-   - Mixed-Integer Linear Programming formulation minimizing diesel fuel consumption and battery degradation.
-   - Handles prolonged polar night zero-solar periods with zero-sensitive clustering and spinning reserve management.
-   - Solves 72-hour dispatch horizons in under 10 milliseconds via hash-keyed result caching.
+3. High-Performance MILP Dispatch Engine:
+   - Mixed-Integer Linear Programming formulation minimizing fuel consumption, battery wear, and operational risk.
+   - Optimized to handle extended polar nights, long periods of low renewable availability, and spinning reserve constraints.
+   - Result caching and warm-starting for sub-second decision cycles in simulated judge/demo scenarios.
 
-4. **Polar Survival Mode & Autonomous Grid Resilience**:
-   - Real-time multivariate anomaly detection on telemetry (wind gusts, generator vibration, voltage sags).
-   - Automated 3-Tier load shedding hierarchy during catastrophic Antarctic blizzards:
-     - **Tier 1 (Life Support)**: Oxygen, water melt tanks, core habitat heating — **100% Protected**.
-     - **Tier 2 (Science Ops)**: Ice core drills, HPC servers — **50% Throttled**.
-     - **Tier 3 (Comfort Heating & Ancillary)**: **100% Shed**.
+4. Polar Survival Mode & Autonomous Resilience:
+   - Real-time multivariate anomaly detection across telemetry streams (wind gusts, generator vibration, voltage/Hz excursions).
+   - Automated 3-tier load prioritization and controlled shedding during extreme events to protect life-support systems and critical science infrastructure.
 
-5. **Photorealistic 3D Earth Preview (`/earth`)**:
-   - 3D globe preview with cinematic orbital camera flyTo down to station coordinates (`-70.7667°S, 11.7333°E`), with regional illustrative cross-fade overlays.
+5. Photorealistic 3D Earth Preview and Visual Telemetry:
+   - High-fidelity globe visualization with station-centric zoom, orbital camera transitions, and layered overlays for power flows, weather fronts, and operational alarms.
+
+6. Auditability & Explainability:
+   - Full traceability from raw telemetry and forecast inputs to optimized dispatch decisions.
+   - Human-readable decision logs and scenario replay for judge walkthroughs and post-event forensics.
 
 ---
 
@@ -39,9 +39,9 @@ Built in the design philosophy of **Google DeepMind WeatherLab** (`deepmind.goog
 ```
 polaris-ai/
 ├── apps/
-│   └── web/                     # Next.js 15 App Router (BFF + Google WeatherLab UI)
+│   └── web/                     # Next.js 15 App Router (BFF + Polar-themed UI)
 │       ├── app/
-│       │   ├── (dashboard)/page.tsx   # Main WeatherLab Console
+│       │   ├── (dashboard)/page.tsx   # Main Console
 │       │   ├── earth/page.tsx         # 3D Earth Orbit View
 │       │   ├── forecast/page.tsx      # ML Forecast Studio
 │       │   ├── dispatch/page.tsx      # MILP Optimizer Studio
@@ -52,20 +52,20 @@ polaris-ai/
 │       │   ├── glass/                 # GlassPanel, GlassCard, GlassPill
 │       │   ├── dashboard/             # TopNavBar, LeftControls, CenterVisualizer, StationDetail
 │       │   └── ui/                    # ToggleSwitch, Sliders
-│       └── styles/tokens.css          # MD3 Polar Tokens & Glass Recipes
+│       └── styles/tokens.css          # Polar design tokens & glass recipes
 ├── services/
-│   ├── forecast-service/              # FastAPI Python 3.12 (XGBoost + LSTM)
-│   ├── optimizer-service/             # FastAPI Python 3.12 (HiGHS / SciPy MILP)
+│   ├── forecast-service/              # Python FastAPI (ML forecasting models)
+│   ├── optimizer-service/             # Python FastAPI (HiGHS / SciPy MILP)
 │   ├── telemetry-service/             # FastAPI + IoT Stream Generator
-│   └── anomaly-service/               # FastAPI + Multivariate Anomaly Detector
+│   └── anomaly-service/               # FastAPI + multivariate anomaly detector
 ├── packages/
 │   ├── types/                         # Shared TypeScript Interfaces & Zod Contracts
-│   ├── data-pipeline/                 # NASA POWER & Open-Meteo ETL Clients + Seed Snapshot
-│   └── ui/                            # Shared Token Definitions
+│   ├── data-pipeline/                 # Historical climatology & forecast ETL clients + seed snapshots
+│   └── ui/                            # Shared token definitions
 ├── docs/
 │   ├── adr/                           # Architecture Decision Records (ADR-001 to ADR-005)
 │   └── IMPLEMENTATION_PLAN.md
-├── DEMO_SCRIPT.md                     # Step-by-Step Investor & Judge Walkthrough
+├── DEMO_SCRIPT.md                     # Step-by-step investor & judge walkthrough
 ├── docker-compose.yml
 └── turbo.json
 ```
@@ -78,13 +78,14 @@ polaris-ai/
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-org/polaris-ai.git
-cd polaris-ai
+git clone https://github.com/jishnukeyhack/PolarIs-ai.git
+cd PolarIs-ai
 
 # Spin up Postgres/TimescaleDB, Redis, Mosquitto, Python Services, and Next.js Web
 docker compose up --build
 ```
-Access the console at `http://localhost:3000`.
+
+Open the console at http://localhost:3000 and follow the DEMO_SCRIPT.md for a structured judge walkthrough.
 
 ### Option 2: Local Development
 
@@ -92,10 +93,11 @@ Access the console at `http://localhost:3000`.
 # 1. Install Node.js dependencies
 npm install
 
-# 2. Start Next.js 15 Web Application
+# 2. Start the Next.js web application for local dev
 npm run dev --workspace=@polaris/web
 ```
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+Open http://localhost:3000 in your browser.
 
 ---
 
@@ -103,26 +105,49 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 | Key | Action |
 |---|---|
-| `Space` | Play / Pause 72-Hour Timeline Scrubber |
-| `←` / `→` | Step Timeline ±1 Hour |
-| `S` | Toggle Polar Survival Mode (Emergency Load Shedding) |
-| `V` | Switch between Antarctic Radar Map & Power Flow Diagram |
-| `Esc` | Close Active Popups / Modals |
+| Space | Play / Pause 72-hour timeline scrubber |
+| ← / → | Step timeline ±1 hour |
+| S | Toggle Polar Survival Mode (emergency load prioritization) |
+| V | Switch between meteorological Radar Map & Power Flow Diagram |
+| Esc | Close active popups / modals |
 
 ---
 
-## Published Antarctic Station Benchmarks
+## Published Antarctic Station Benchmarks (Representative Estimates)
 
 | Station | Jurisdiction | Renewable % | Annual Diesel Saved | Annual Cost Avoided |
-|---|---|---|---|---|
-| **Maitri** | India | 64.2% | 28,400 Liters | $109,340 USD |
-| **Bharati** | India | 68.1% | 34,200 Liters | $131,670 USD |
-| **Maitri II (Next-Gen)** | India | 74.5% | 52,000 Liters | $200,200 USD |
+|---|---:|---:|---:|---:|
+| Maitri | India | 64.2% | 28,400 Liters | ₹9,100,000 (approx.) |
+| Bharati | India | 68.1% | 34,200 Liters | ₹10,950,000 (approx.) |
+| Maitri II (Next-Gen) | India | 74.5% | 52,000 Liters | ₹16,650,000 (approx.) |
+
+> These are representative estimates based on simulated dispatch scenarios and historical climate baselines; actual savings will vary with fuel prices, operational constraints, and local logistics.
+
+---
+
+## How Judges Can Evaluate (SIH2026 Walkthrough)
+
+1. Start the full stack with Docker Compose and open the console.
+2. Run the DEMO_SCRIPT.md to reproduce a condensed 15-minute scenario: forecast ingestion -> dispatch optimization -> simulated extreme event -> Polar Survival Mode activation.
+3. Inspect the decision logs and scenario replay: verify explainability of dispatch choices and why specific loads were prioritized.
+4. Review resilience behaviors under fault-injection (simulated generator failure, rapid wind gusts) and confirm life-safety protection and controlled shedding.
+5. Check performance metrics: forecast RMSE, dispatch runtime, fuel reductions, battery cycle counts.
+
+---
+
+## Contributing & Roadmap
+
+We welcome contributions that strengthen reliability, add station adapters, and improve explainability.
+
+Planned near-term priorities:
+- Hardware-in-the-loop telemetry adapter for field testing
+- Expanded regional climatology baselines and uncertainty-aware forecasts
+- Policy-aware dispatch modes for multi-station coordination
 
 ---
 
 ## License & Attribution
 
-- Built for **Antarctic Clean Energy Transition**.
-- Atmospheric & Irradiance Baselines: **NASA POWER Project** (`power.larc.nasa.gov`) & **Open-Meteo** (`open-meteo.com`).
-- Station Metadata: **National Centre for Polar and Ocean Research (NCPOR)**, Ministry of Earth Sciences, Government of India.
+This project was developed for SIH2026 and is provided under an open-source license. It leverages publicly available historical climatology datasets and numerical forecast products; data attributions and references are documented in docs/IMPLEMENTATION_PLAN.md.
+
+For demo instructions and a judge-focused walkthrough, see DEMO_SCRIPT.md.
