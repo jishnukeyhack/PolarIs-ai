@@ -1,0 +1,170 @@
+/* =====================================================
+   Polar Energy AI Lab — Premium Design System v2
+   Google DeepMind · Material Design 3 · Glassmorphism
+   ===================================================== */
+
+:root {
+  /* ── Core Surface Palette ─────────────────────── */
+  --md-surface:              #05070B;
+  --md-surface-dim:          #080B12;
+  --md-surface-bright:       #1A2035;
+  --md-surface-container-lowest: #030407;
+  --md-surface-container-low:   #0B0F1A;
+  --md-surface-container:       #10151F;
+  --md-surface-container-high:  #161C2A;
+  --md-surface-container-highest:#1E2535;
+
+  /* ── Polar Energy Color Tokens ────────────────── */
+  --md-primary:          #7DD3FC;
+  --md-primary-container:#0C3D5E;
+  --md-on-primary:       #082F49;
+  --md-secondary:        #34D399;
+  --md-secondary-container:#053D30;
+  --md-on-secondary:     #022C22;
+  --md-tertiary:         #A78BFA;
+  --md-tertiary-container:#3B1F88;
+  --md-on-tertiary:      #2E1065;
+  --md-error:            #FCA45A;
+  --md-error-container:  #7C2D12;
+  --md-on-error:         #431407;
+  --md-critical:         #FB7185;
+  --md-critical-container:#881337;
+  --md-on-surface:       #E8EDF5;
+  --md-on-surface-variant: #8896AE;
+  --md-outline:          rgba(255, 255, 255, 0.07);
+  --md-outline-variant:  rgba(255, 255, 255, 0.04);
+
+  /* ── Typography Stacks ────────────────────────── */
+  --font-inter:   'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono:    'IBM Plex Mono', 'JetBrains Mono', 'Fira Code', monospace;
+  --font-display: 'Space Grotesk', 'Inter', sans-serif;
+
+  /* ── Elevation Shadows ────────────────────────── */
+  --elevation-1: 0 1px 3px rgba(0,0,0,0.45), 0 1px 2px rgba(0,0,0,0.65);
+  --elevation-2: 0 4px 8px -1px rgba(0,0,0,0.55), 0 2px 4px -1px rgba(0,0,0,0.65);
+  --elevation-3: 0 10px 20px -3px rgba(0,0,0,0.65), 0 4px 8px -2px rgba(0,0,0,0.75);
+  --elevation-4: 0 20px 30px -5px rgba(0,0,0,0.75), 0 10px 12px -5px rgba(0,0,0,0.85);
+  --elevation-5: 0 28px 56px -12px rgba(0,0,0,0.9);
+
+  /* ── Glassmorphism ────────────────────────────── */
+  --glass-bg:        rgba(11, 15, 26, 0.72);
+  --glass-border:    rgba(255, 255, 255, 0.07);
+  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.05), inset 0 -1px 0 rgba(0,0,0,0.25);
+  --glass-blur:      blur(24px) saturate(160%);
+
+  /* ── Brand Glows ──────────────────────────────── */
+  --glow-sky:    rgba(125, 211, 252, 0.25);
+  --glow-green:  rgba(52, 211, 153, 0.22);
+  --glow-violet: rgba(167, 139, 250, 0.22);
+  --glow-amber:  rgba(252, 164, 90, 0.22);
+  --glow-rose:   rgba(251, 113, 133, 0.22);
+}
+
+/* ─── Glass Utilities ─────────────────────────────── */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--elevation-4), var(--glass-highlight);
+}
+
+.glass-sm {
+  background: rgba(11, 15, 26, 0.60);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: var(--elevation-2), var(--glass-highlight);
+}
+
+.glass-header {
+  background: rgba(5, 7, 11, 0.85);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.04), 0 4px 24px rgba(0,0,0,0.6);
+}
+
+/* ─── Typography ──────────────────────────────────── */
+.data-mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1, "zero" 1;
+}
+.display-num {
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── Custom Scrollbar ────────────────────────────── */
+.custom-scrollbar { scrollbar-width: thin; scrollbar-color: rgba(125,211,252,0.2) transparent; }
+.custom-scrollbar::-webkit-scrollbar { width: 4px; height: 4px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(125,211,252,0.2); border-radius: 9999px; }
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(125,211,252,0.4); }
+
+/* ─── Range Slider ────────────────────────────────── */
+input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; background: transparent; outline: none; }
+input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%; height: 3px; cursor: pointer;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  height: 16px; width: 16px; border-radius: 50%; background: #fff; cursor: pointer; margin-top: -6.5px;
+  box-shadow: 0 0 0 3px rgba(125,211,252,0.35), 0 2px 8px rgba(0,0,0,0.6);
+  transition: transform 0.15s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.15s ease;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
+  box-shadow: 0 0 0 5px rgba(125,211,252,0.4), 0 3px 10px rgba(0,0,0,0.7);
+}
+input[type="range"]:active::-webkit-slider-thumb {
+  transform: scale(1.35);
+  box-shadow: 0 0 0 7px rgba(125,211,252,0.3), 0 4px 12px rgba(0,0,0,0.7);
+}
+
+/* ─── KPI Pill hover ──────────────────────────────── */
+.kpi-pill {
+  transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s ease;
+  pointer-events: auto;
+}
+.kpi-pill:hover { transform: translateY(-2px); }
+
+/* ─── Button press effect ─────────────────────────── */
+.btn-press { transition: transform 0.12s ease, opacity 0.12s ease; }
+.btn-press:active { transform: scale(0.93); opacity: 0.8; }
+
+/* ─── Animations ──────────────────────────────────── */
+@keyframes slideInLeft  { from { opacity:0; transform:translateX(-18px);} to { opacity:1; transform:translateX(0); } }
+@keyframes slideInRight { from { opacity:0; transform:translateX(18px); } to { opacity:1; transform:translateX(0); } }
+@keyframes slideInUp    { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn       { from { opacity:0; }                              to { opacity:1; } }
+@keyframes pulseGlow    { 0%,100% { opacity:0.9; transform:scale(1); } 50% { opacity:0.4; transform:scale(1.2); } }
+@keyframes flowDash     { to { stroke-dashoffset:-24; } }
+@keyframes spinSlow     { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
+@keyframes shimmer      { from { background-position:-200% center; } to { background-position:200% center; } }
+
+.animate-slide-in-left  { animation: slideInLeft  0.22s cubic-bezier(0.16,1,0.3,1) both; }
+.animate-slide-in-right { animation: slideInRight 0.22s cubic-bezier(0.16,1,0.3,1) both; }
+.animate-slide-in-up    { animation: slideInUp    0.22s cubic-bezier(0.16,1,0.3,1) both; }
+.animate-fade-in        { animation: fadeIn       0.18s ease both; }
+.pulse-marker           { animation: pulseGlow 2.4s ease-in-out infinite; }
+.flow-active            { animation: flowDash 1s linear infinite; }
+.spin-slow              { animation: spinSlow 8s linear infinite; }
+.skeleton {
+  background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.09) 50%, rgba(255,255,255,0.04) 75%);
+  background-size: 200% auto;
+  animation: shimmer 1.8s linear infinite;
+  border-radius: 6px;
+}
+
+/* ─── Gradient border card ────────────────────────── */
+.gradient-border { position: relative; }
+.gradient-border::before {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
+  background: linear-gradient(135deg, rgba(125,211,252,0.25) 0%, rgba(52,211,153,0.1) 50%, rgba(167,139,250,0.2) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
+}
