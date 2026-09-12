@@ -1,4 +1,4 @@
-# PolarIs AI — Polar Energy Lab
+# PolarIs AI — Polar Energy Lab 
 
 > A predictive, optimization-driven, resilient microgrid energy management platform purpose-built for Antarctic research stations and extreme environments.
 
