@@ -1,9 +1,17 @@
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
 from typing import List, Dict, Any
-from app.solver.milp_dispatcher import PolarMicrogridOptimizer
 
-app = FastAPI(title="PolarIs AI MILP Optimizer Service", version="1.0.0")
+try:
+    from app.solver.pypsa_dispatcher import PolarMicrogridOptimizer
+    ENGINE = "pypsa"
+except Exception:
+    # PyPSA/HiGHS not installed or failed to import — fall back to the
+    # original hand-rolled scipy LP so the service still boots.
+    from app.solver.milp_dispatcher import PolarMicrogridOptimizer
+    ENGINE = "scipy-linprog"
+
+app = FastAPI(title="PolarIs AI MILP Optimizer Service", version="1.1.0")
 
 class OptimizeRequest(BaseModel):
     solar_forecast: List[float]
@@ -34,7 +42,7 @@ class OptimizeResponse(BaseModel):
 
 @app.get("/health")
 def health_check() -> Dict[str, str]:
-    return {"status": "healthy", "service": "optimizer-service"}
+    return {"status": "healthy", "service": "optimizer-service", "engine": ENGINE}
 
 @app.post("/optimize/dispatch", response_model=OptimizeResponse)
 def optimize_dispatch(req: OptimizeRequest) -> OptimizeResponse:
